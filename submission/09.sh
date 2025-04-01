@@ -354,7 +354,7 @@ echo "Secondary transaction ID: $SECONDARY_TXID"
 
 # STUDENT TASK: Create the input JSON structure with a 10-block relative timelock
 # WRITE YOUR SOLUTION BELOW:
-TIMELOCK_INPUTS='[{"txid":"'$SECONDARY_TXID'","vout":1}]'
+TIMELOCK_INPUTS='[{"txid":"'$SECONDARY_TXID'","vout":1,"sequence":10}]'
 check_cmd "Timelock input creation" "TIMELOCK_INPUTS" "$TIMELOCK_INPUTS"
 
 # Recipient address for timelock funds
@@ -377,7 +377,7 @@ TIMELOCK_OUTPUTS='{"'$TIMELOCK_ADDRESS'":'$TIMELOCK_BTC'}'
 check_cmd "Timelock output creation" "TIMELOCK_OUTPUTS" "$TIMELOCK_OUTPUTS"
 
 # STUDENT TASK: Create the raw transaction with timelock
-TIMELOCK_TX=$(bitcoin-cli -regtest createrawtransaction $TIMELOCK_INPUTS $TIMELOCK_OUTPUTS 10)
+TIMELOCK_TX=$(bitcoin-cli -regtest createrawtransaction $TIMELOCK_INPUTS $TIMELOCK_OUTPUTS)
 check_cmd "Timelock transaction creation" "TIMELOCK_TX" "$TIMELOCK_TX"
 
 echo "Successfully created transaction with 10-block relative timelock!"
